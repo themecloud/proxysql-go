@@ -9,7 +9,7 @@ import (
 type vOpts func(*hostQuery) error
 
 var (
-	ErrConfigBadTable             = errors.New("Bad table value, must be one of 'mysql_servers', 'runtime_mysql_servers'")
+	ErrConfigBadTable             = errors.New("Bad table value, must be one of 'mysql_servers', 'runtime_mysql_servers, 'mysql_replication_hostgroups'")
 	ErrConfigBadHostgroupID       = errors.New("Bad hostgroup value, must be in [0, 2147483648]")
 	ErrConfigBadPort              = errors.New("Bad port value, must be in [0, 65535]")
 	ErrConfigBadMaxConnections    = errors.New("Bad max_connections value, must be > 0")
@@ -45,7 +45,7 @@ func validateTableOpts(opts *hostQuery) error {
 }
 
 func validateTable(t string) error {
-	if t != "mysql_servers" && t != "runtime_mysql_servers" {
+	if t != "mysql_servers" && t != "runtime_mysql_servers" && t != "mysql_replication_hostgroup" {
 		return ErrConfigBadTable
 	}
 	return nil
